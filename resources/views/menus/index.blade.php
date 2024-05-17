@@ -8,92 +8,73 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #DDDDDD;
-            display: flex;
+            background-color: #F0EBE3;
+            margin: 0;
         }
-        .dashboard {
-            width: 25%;
-            background-color: #BED7DC;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: -3px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: calc(100vh - 10px); 
+
+        .sidebar {
+            background-color: #EADBC8;
+            color: #000;
+            padding: 20px;
+            height: 100vh;
+            width: 200px;
         }
-        .dashboard h2 {
-            margin-bottom: 20px;
-        }
-        .dashboard p {
-            margin: 10px 0;
-        }
+
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
-            width: 75%; /* Adjust width to account for dashboard */
+            padding: 20px;
         }
+
         .search-bar {
-            width: 80%;
+            width: 100%;
             margin-bottom: 20px;
             display: flex;
             justify-content: center;
+            position: relative;
         }
+
         .search-bar input {
-            width: 70%;
+            width: 80%;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 20px;
             border: 1px solid #000;
         }
+
         .search-bar button {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #000;
-            margin-left: 10px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
             cursor: pointer;
         }
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 20px;
-            width: 80%;
-            margin-bottom: 20px;
         }
-        .menu-item {
-            background-color: white;
-            padding: 10px;
+
+        .card {
+            background-color: #FFFFFF;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            transition: box-shadow 0.3s ease;
+            width: 200px;
         }
-        .menu-item:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .menu-item img {
+
+        .card img {
             max-width: 100%;
             border-radius: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            object-fit: cover;
-            height: 150px;
             margin-bottom: 10px;
         }
-        .menu-item img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .menu-item h3 {
-            margin: 10px 0;
-        }
-        .menu-item p {
-            margin: 5px 0;
-            font-size: 16px;
-            color: #666;
-        }
-        .menu-item button {
+
+        .card button {
             background-color: #28a745;
             color: white;
             border: none;
@@ -102,42 +83,92 @@
             cursor: pointer;
             margin-top: 10px;
         }
-        .cart-footer {
-            margin-top: 20px;
-            width: 80%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
     </style>
 </head>
 <body>
-    <div class="dashboard">
-        <h2></h2>
-        <p>menu makanan</p>
-        <!-- Add more dashboard content as needed -->
-    </div>
-    <div class="container">
-        <h1>Kantin wikrama</h1>
-        <div class="search-bar">
-            <input type="text" placeholder="Ketik disini">
-            <button><img src="https://img.icons8.com/ios-glyphs/30/000000/search.png" alt="search icon"/></button>
+    <div class="layout">
+        <div class="sidebar">
+            <h2>menu makanan</h2>
         </div>
-        <div class="menu-grid">
-            @foreach ($menus as $menu)
-            <div class="menu-item">
-                <img src="{{ asset('img/risol.jpg') }}" alt="{{ risol }}">
-                <h3>{{ risol }}</h3>
-                <p>Rp.3000</p>
-                <button>Tambah ke Keranjang</button>
-                <img src="path_to_your_image.jpg" alt="Your Image" width="100" height="100">
+        <div class="container">
+            <div class="search-bar">
+                <input type="text" placeholder="Ketik disini">
+                <button><img src="https://img.icons8.com/ios-glyphs/30/000000/search.png" alt="search icon"/></button>
             </div>
-            @endforeach
-        </div>
-        <div class="cart-footer">
-            <p>0 Item</p>
-            <p>Total: Rp. 0,00</p>
+            <div class="main-content">
+                <div class="card">
+                    <img src="{{ asset('images/dimsum.jpg') }}" alt="dimsum">
+                    <p>dimsum</p>
+                    <p>Harga : Rp.1.500</p>
+                    <button>Tambah</button>
+                </div>
+                <div class="card">
+                    <img src="{{ asset('images/hotdog.jpg') }}" alt="hotdog">
+                    <p>Cireng Isi</p>
+                    <p>Harga : Rp.2.500</p>
+                    <button>Tambah</button>
+                </div>                <div class="card">
+                    <img src="{{ asset('images/hotdog.jpg') }}" alt="hotdog">
+                    <p>Cireng Isi</p>
+                    <p>Harga : Rp.2.500</p>
+                    <button>Tambah</button>
+                </div>
+                <div class="card">
+                    <img src="{{ asset('images/kebab.jpg') }}" alt="kebab">
+                    <p>kebeb</p>
+                    <p>Harga : Rp.2.000</p>
+                    <button>Tambah</button>
+                </div>
+                <div class="card">
+                    <img src="{{ asset('images/martabak mini.jpg') }}" alt="martabak mini">
+                    <p>martabak mini</p>
+                    <p>Harga : Rp.3.000</p>
+                    <button>Tambah</button>
+                </div>
+                <div class="card">
+                    <img src="{{ asset('images/onigiri.jpg') }}" alt="onigiri">
+                    <p>Onigiri</p>
+                    <p>Harga : Rp.3.000</p>
+                    <button>Tambah</button>
+                </div>
+                <div class="card">        
+                    <img src="{{ asset('images/putu ayu.jpg') }}" alt="putu ayu">
+                    <p>putu ayu</p>
+                    <p>Harga : Rp.1.000</p>
+                    <button>Tambah</button>
+                </div>
+                <div class="card">
+                    <img src="{{ asset('images/risol.jpg') }}" alt="risol">
+                    <p>risol</p>
+                    <p>Harga : Rp.3.000</p>
+                    <button>Tambah</button>
+                </div>
+                <div class="card">
+                    <img src="{{ asset('images/nasi ayam.jpg') }}" alt="nasi ayam">
+                    <p>nasi ayam</p>
+                    <p>Harga : Rp.10.000</p>
+                    <button>Tambah</button>
+                </div>
+                <div class="card">
+                    <img src="{{ asset('images/bala-bala.jpg') }}" alt="bala-bala">
+                    <p>bala-bala</p>
+                    <p>Harga : Rp.1.000</p>  
+                    <button>Tambah</button> 
+                </div>      
+                </div>
+            </div>
         </div>
     </div>
-</body>
-</html>
+    </body>
+    </html>
+
+    @if ($message = Session::get('success'))
+    <div>
+        <strong>{{ $message }}</strong>
+    </div>
+    @endif
+
+    </main>
+    </body>
+    </html>
+
