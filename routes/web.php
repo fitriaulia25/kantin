@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\KeranjangController;
 
 
 /*
@@ -26,4 +27,8 @@ Route::post('/menus', [MenuController::class, 'store'])->name('menus.store');
 Route::get('/menus/{menu}/edit', [MenuController::class, 'edit'])->name('menus.edit');
 Route::put('/menus/{menu}', [MenuController::class, 'update'])->name('menus.update');
 Route::delete('/menus/{menu}', [MenuController::class, 'destroy'])->name('menus.destroy');
-Route::get('/product/{id}', [ProductController::class, 'getProduct'])->name('product.get');
+Route::get('/', [ProductController::class, 'index'])->name('produk.index');
+Route::get('/produk/{id}', [ProductController::class, 'show'])->name('produk.show');
+Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang.index');
+Route::post('/add-to-cart', 'KeranjangController@addToCart')->name('addToCart');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');

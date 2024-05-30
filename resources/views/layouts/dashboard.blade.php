@@ -39,12 +39,13 @@
         <!-- Daftar Produk -->
         <div class="product-list">
             @foreach ($products as $product)
-            <div class="product-card">
-                <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}">
-                <div class="product-info">
-                    <h3>{{ $product->name }}</h3>
-                    <p>Harga: Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
-                    <button class="detail-btn" data-id="{{ $product->id }}">Detail</button>
+            <div class="menu-item">
+                <img src="{{ asset('images/dimsum.jpg') }}" alt="dimsum">
+                <div class="details">
+                    <h3>dimsum</h3>
+                    <p>Rp 1.500</p>
+                    <button class="detail-btn" onclick="showDetails('dimsum', 'Kue soes yang lembut dengan isian krim.','images/dimsum.jpg')">Detail</button>
+                    <button onclick="addToCart('dimsum', 1500)">Tambah</button>
                 </div>
             </div>
             @endforeach

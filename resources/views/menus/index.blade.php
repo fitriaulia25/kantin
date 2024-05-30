@@ -37,6 +37,10 @@
             justify-content: center;
             position: relative;
         }
+        .cart-icon {
+        width: 30px; /* Sesuaikan ukuran ikon keranjang */
+        cursor: pointer;
+    }
 
         .search-bar input {
             width: 80%;
@@ -78,7 +82,7 @@
         }
 
         .card button {
-            background-color: #28a745;
+            background-color: #C7B7A3;
             color: white;
             border: none;
             padding: 10px;
@@ -86,122 +90,101 @@
             cursor: pointer;
             margin-top: 10px;
         }
-        .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
-    padding-top: 60px;
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
+        
     </style>
 </head>
 <body>
     <div class="layout">
         <div class="sidebar">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo Kantin" style="max-width: 100px; margin-bottom: 30px;">
             <h2>menu makanan</h2>
+            <hr style="border: 1px solid #000; width: 100%;">
         </div>
         <div class="container">
             <div class="search-bar">
                 <input type="text" placeholder="Ketik disini">
-                <button><img src="https://img.icons8.com/ios-glyphs/30/000000/search.png" alt="search icon"/></button>
+                <button><a href="{{ route('keranjang.index') }}">
+                    <img src="https://th.bing.com/th/id/OIP.rXZw4tDXlU2myZRHTXRUHQHaGa?rs=1&pid=ImgDetMain" alt="keranjang icon" class="cart-icon">
+                </a>
+                
             </div>
             <div class="main-content">
+                @foreach($produks as $produk)
                 <div class="card">
                     <img src="{{ asset('images/dimsum.jpg') }}" alt="dimsum">
-                    <p>dimsum</p>
-                    <p>Harga : Rp.1.500</p>
-                    <button>Detail</button>
-                    <button>Tambah</button>
+                    <p>Dimsum</p>
+                    <p>Harga: Rp.1.500</p>
+                    <p>Stok: 50</p>
+                    <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-detail">Detail</a>
+                    <a href="{{ route('keranjang.index') }}"><button>Tambah ke keranjang</button>
                 </div>
                 <div class="card">
                     <img src="{{ asset('images/hotdog.jpg') }}" alt="hotdog">
                     <p>Hotdog</p>
                     <p>Harga : Rp.8.000</p>
-                    <button>Detail</button>
-                    <button>Tambah</button>
+                    <p>Stok: 50</p>
+                    <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-detail">Detail</a>
+                    <a href="{{ route('keranjang.index') }}"><button>Tambah ke keranjang</button>
                 </div>
                 <div class="card">
                     <img src="{{ asset('images/kebab.jpg') }}" alt="kebab">
                     <p>kebeb</p>
                     <p>Harga : Rp.2.000</p>
-                    <button>Detail</button>
-                    <button>Tambah</button>
+                    <p>Stok: 50</p>
+                    <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-detail">Detail</a>
+                    <a href="{{ route('keranjang.index') }}"><button>Tambah ke keranjang</button>
                 </div>
                 <div class="card">
                     <img src="{{ asset('images/martabak mini.jpg') }}" alt="martabak mini">
                     <p>martabak mini</p>
                     <p>Harga : Rp.3.000</p>
-                    <button>Detail</button>
-                    <button>Tambah</button>
+                    <p>Stok: 50</p>
+                    <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-detail">Detail</a>
+                    <a href="{{ route('keranjang.index') }}"><button>Tambah ke keranjang</button>
                 </div>
                 <div class="card">
                     <img src="{{ asset('images/onigiri.jpg') }}" alt="onigiri">
                     <p>Onigiri</p>
                     <p>Harga : Rp.3.000</p>
-                    <button>Detail</button>
-                    <button>Tambah</button>
+                    <p>Stok: 50</p>
+                    <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-detail">Detail</a>
+                    <a href="{{ route('keranjang.index') }}"><button>Tambah ke keranjang</button>
                 </div>
                 <div class="card">        
                     <img src="{{ asset('images/putu ayu.jpg') }}" alt="putu ayu">
                     <p>putu ayu</p>
                     <p>Harga : Rp.1.000</p>
-                    <button>Detail</button>
-                    <button>Tambah</button>
+                    <p>Stok: 50</p>
+                    <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-detail">Detail</a>
+                    <a href="{{ route('keranjang.index') }}"><button>Tambah ke keranjang</button>
                 </div>
                 <div class="card">
                     <img src="{{ asset('images/risol.jpg') }}" alt="risol">
                     <p>risol</p>
                     <p>Harga : Rp.3.000</p>
-                    <button>Detail</button>
-                    <button>Tambah</button>
+                    <p>Stok: 50</p>
+                    <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-detail">Detail</a>
+                    <a href="{{ route('keranjang.index') }}"><button>Tambah ke keranjang</button>
                 </div>
                 <div class="card">
                     <img src="{{ asset('images/nasi ayam.jpg') }}" alt="nasi ayam">
                     <p>nasi ayam</p>
                     <p>Harga : Rp.10.000</p>
-                    <button>Detail</button>
-                    <button>Tambah</button>
+                    <p>Stok: 50</p>
+                    <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-detail">Detail</a>
+                    <a href="{{ route('keranjang.index') }}"><button>Tambah ke keranjang</button>
                 </div>
                 <div class="card">
                     <img src="{{ asset('images/bala-bala.jpg') }}" alt="bala-bala">
                     <p>bala-bala</p>
                     <p>Harga : Rp.1.000</p>  
-                    <button>Detail</button>
-                    <button>Tambah</button>
-
+                    <p>Stok: 50</p>
+                    <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-detail">Detail</a>
+                    <a href="{{ route('keranjang.index') }}"><button>Tambah ke keranjang</button>
+                    @endforeach
                 </div>      
                 </div>
+
             </div>
         </div>
     </div>

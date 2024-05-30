@@ -38,6 +38,46 @@ class MenuController extends Controller
         return redirect()->route('menus.index')->with('success', 'Menu created successfully.');
     }
 
+
+    public function addToCart(Request $request)
+    {
+        // Validasi request
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $productId = $request->input('product_id');
+        $quantity = $request->input('quantity');
+
+        // Ambil informasi produk dari database
+        $product = Product::findOrFail($productId);
+
+        // Simpan produk ke dalam session keranjang
+        $cart = session()->get('cart', []);
+
+        // Jika produk sudah ada di keranjang, tambahkan jumlahnya
+        if (isset($cart[$productId])) {
+            $cart[$productId]['quantity'] += $quantity;
+        } else {
+            // Jika produk belum ada di keranjang, tambahkan ke keranjang
+            $cart[$productId] = [
+                'id' => $productId,
+                'name' => $product->nama, // Sesuaikan dengan field nama produk di model Product
+                'price' => $product->harga, // Sesuaikan dengan field harga produk di model Product
+                'quantity' => $quantity,
+            ];
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang.');
+    }
+
     public function edit(Menu $menu)
     {
         return view('menus.edit', compact('menu'));
